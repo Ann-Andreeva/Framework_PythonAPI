@@ -1,9 +1,15 @@
+import allure
 import requests
 import pytest
 from lib.base_case import BaseCase
 from lib.assertions import Assertions
 
+@allure.epic("Get case")
 class TestUserGet(BaseCase):
+    @allure.title("Test get another user details")
+    @allure.description("This test checks get another user details")
+    @allure.link("https://software-testing.ru/lms/mod/assign/view.php?id=341786")
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_get_another_user_details(self):
         data = {
             'password': '1234',
