@@ -1,10 +1,15 @@
+import allure
 import requests
 import pytest
 from lib.base_case import BaseCase
 from lib.assertions import Assertions
 
+@allure.epic("Edit cases")
 class TestUserEdit(BaseCase):
-
+    @allure.title("Test edit user without authorization")
+    @allure.description("This test checks edit user without authorization")
+    @allure.link("https://software-testing.ru/lms/mod/assign/view.php?id=341786")
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_edit_without_auth(self):
         # REGISTER
         register_data = self.prepare_registration_data()
@@ -24,7 +29,10 @@ class TestUserEdit(BaseCase):
         assert response2.content.decode(
             "utf-8") == "Auth token not supplied", f'Unexpected response content {response2.content}'
 
-
+    @allure.title("Test edit user with authorization by another user")
+    @allure.description("This test checks edit user with authorization by another user")
+    @allure.link("https://software-testing.ru/lms/mod/assign/view.php?id=341786")
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_edit_with_auth_by_another_user(self):
         # REGISTER USER 1
         register_data1 = self.prepare_registration_data()
@@ -67,7 +75,10 @@ class TestUserEdit(BaseCase):
 
         Assertions.assert_code_status(response4, 400)
 
-
+    @allure.title("Test edit user with incorrect email")
+    @allure.description("This test checks edit user with incorrect email")
+    @allure.link("https://software-testing.ru/lms/mod/assign/view.php?id=341786")
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_edit_with_incorrect_email(self):
         # REGISTER
         register_data = self.prepare_registration_data()
@@ -104,7 +115,10 @@ class TestUserEdit(BaseCase):
         assert response3.content.decode(
             "utf-8") == "Invalid email format", f'Unexpected response content {response3.content}'
 
-
+    @allure.title("Test edit user with incorrect first name")
+    @allure.description("This test checks edit user with incorrect first name")
+    @allure.link("https://software-testing.ru/lms/mod/assign/view.php?id=341786")
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_edit_with_incorrect_first_name(self):
         # REGISTER
         register_data = self.prepare_registration_data()
